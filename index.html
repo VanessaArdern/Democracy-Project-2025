@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Democracy Project 2025 </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #7652CA;
+            --orange: #D39C2F;
+            --dark-bg: #0f0f23;
+            --card-bg: #1a1a2e;
+            --text-light: #e4e4e7;
+            --text-muted: #a1a1aa;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #16213e 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 30% 50%, rgba(118, 82, 202, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(211, 156, 47, 0.2) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--purple), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--purple), var(--orange));
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(118, 82, 202, 0.3);
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--purple);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(118, 82, 202, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--purple), var(--orange));
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--purple);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h3 {
+            color: var(--orange);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stats-section {
+            background: var(--card-bg);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--orange);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .how-to-vote {
+            background: linear-gradient(135deg, rgba(118, 82, 202, 0.1), rgba(211, 156, 47, 0.1));
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            margin: 4rem 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            background: var(--purple);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .links-section {
+            text-align: center;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .link-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-light);
+            display: block;
+        }
+
+        .link-card:hover {
+            border-color: var(--orange);
+            transform: scale(1.05);
+        }
+
+        .link-card h4 {
+            color: var(--purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--purple);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .scroll-indicator:hover {
+            background: var(--orange);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1> #MakeItCount </h1>
+            <p> If you are 25 - 29 years old, it's time to get envolved. </p>
+            <a href="#why-democracy" class="cta-button pulse"> Start Today </a>
+        </div>
+    </section>
+
+    <section id="why-democracy" class="section">
+        <h2>Why is Democracy Important? </h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Reason One </h3>
+                <p> </p>
+            </div>
+            <div class="card">
+                <h3>Reason Two </h3>
+                <p> </p>
+            </div>
+            <div class="card">
+                <h3> Reason Three </h3>
+                <p> </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Young Voices. We need you. </h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3> Inovative Perspectives </h3>
+                <p> </p>
+            </div>
+            <div class="card">
+                <h3> Thinking of our future </h3>
+                <p> </p>
+            </div>
+            <div class="card">
+                <h3> Reason three? </h3>
+                <p> </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <h2> Your Vote Has More Power Than You Realise </h2> 
+        <h3> 🚨Currently these are placeholder statistics from online, we need to find others that fit New Zealand stats!!</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">12%</span>
+                <div class="stat-label">of elections decided by less than 5% margin</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1 in 4</span>
+                <div class="stat-label">local elections won by single votes</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">68%</span>
+                <div class="stat-label">of 25-29 year olds voted in recent elections</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">Every Vote</span>
+                <div class="stat-label">has the potential to create change</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Benefits of Voting</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Benefit One </h3>
+                <p> </p>
+            </div>
+            <div class="card">
+                <h3> Benifit Two </h3>
+                <p> </p>
+            </div>
+            <div class="card">
+                <h3> Benifit Three </h3>
+                <p> </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-to-vote">
+        <div class="section">
+            <h2> Here's How To Vote </h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>When? </h3>
+                    <p> You can begin voting two weeks before the election day. Voting is open 9am to 7pm and ends at 7pm on election days. </p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3> Where? </h3>
+                    <p>Find your local voting place online! Locations are published three weeks before election day. </p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3> What? </h3>
+                    <p> Take your EasyVote card with you when voting. You don't need to take ID with you to vote! </p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3> How? </h3>
+                    <p> You are given two votes: a party vote and an electorate vote. You should research into each party and candidate before voting! </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section links-section">
+        <h2>Useful Resources</h2>
+        <div class="links-grid">
+            <a href="https://vote.nz/voting/how-to-vote/what-to-do/" class="link-card" target="_blank" rel="noopener noreferrer">
+                <h4> Electoral Commission</h4>
+                <h3> Click Here </h3>
+                <p> vote.nz </p>
+            </a>
+            <a href="https://www.lgnz.co.nz/local-government-in-nz/local-elections-and-voting/" class="link-card" target="_blank" rel="noopener noreferrer">
+                <h4> Local Governemnt New Zealand</h4> 
+                <h3> Click Here </h3>
+                <p> lgnz.co.nz </p>
+            </a>
+            <a href="#" class="link-card" onclick="alert('Electoral commission website for voting information')">
+                <h4> Need a thrid source </h4>
+                <h3> Click Here </h3>
+                <p> Example link </p>
+            </a>
+        </div>
+    </section>
+
+    <button class="scroll-indicator" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Back to top">
+        ↑
+    </button>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll-based animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.card, .section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Show/hide scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 500) {
+                scrollIndicator.style.opacity = '1';
+            } else {
+                scrollIndicator.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+</html>
